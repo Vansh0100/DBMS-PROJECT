@@ -47,31 +47,31 @@
                             <!-- <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </span> -->
-                            <input type="text" name="first_name" class="form-control" placeholder="firstname" required="required">
+                            <input type="text" name="first_name" class="form-control" placeholder="firstname" required>
                         </div><br>
                         <div class="input-group">
                             <!-- <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </span> -->
-                            <input type="text" name="last_name" class="form-control" placeholder="lastname" required="required">
+                            <input type="text" name="last_name" class="form-control" placeholder="lastname" required>
                         </div><br>
                         <div class="input-group">
                             <!-- <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-lock"></i>
                             </span> -->
-                            <input type="password" name="u_pass" class="form-control" placeholder="password" required="required">
+                            <input type="password" name="u_pass" class="form-control" placeholder="password" required>
                         </div><br>
                         <div class="input-group">
                             <!-- <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-user"></i>
                             </span> -->
-                            <input type="email" name="u_email" class="form-control" placeholder="Email: abc@gmail.com" required="required">
+                            <input type="email" name="u_email" class="form-control" placeholder="Email: abc@gmail.com" required>
                         </div><br>
                         <div class="input-group">
                             <!-- <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-chevron-down"></i>
                             </span> -->
-                            <select class="form-control input-md" name="u_gender" id="gender" placeholder="Gender" required="required">
+                            <select class="form-control input-md" name="u_gender" id="gender" placeholder="Gender">
                                 <option selected disabled>Select your Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -79,7 +79,7 @@
                             </select>
                         </div><br>
                         <div class="input-group">
-                            <input type="date" class="form-control input-md" placeholder="Date of Birth" name="u_birthday" required="required">
+                            <input type="date" class="form-control input-md" placeholder="Date of Birth" name="u_birthday" required>
                         </div><br>
                    <a style="text-decoration: none; float: left; margin-left: 23px;" href="main.php"><button type="button" class="btn btn-outline-success login">Log In</button></a>
                    <a style="text-decoration: none; float: right;  margin-right: 23px;" href="signin.php"><button type="button" class="btn btn-outline-warning signin">Sign In</button></a>
