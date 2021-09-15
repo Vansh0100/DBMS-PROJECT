@@ -1,15 +1,16 @@
 body{
     margin: 0px;
     padding: 0px;
-    background: url(images/teemu-paananen-OOE4xAnBhKo-unsplash.jpg);
-    background-size: cover;
+    background: url(images/abdul-a-wmdfPWB2lWM-unsplash.jpg);
+    background-size:cover;
+    background-repeat: no-repeat;
     font-style: italic;
 }
 .box{
     width: 400px;
   position: absolute;
-  top: 40%;
-  left: 50%;
+  top: 50%;
+  left: 25%;
   transform: translate(-50%,-50%);
   color: white;
   background-color: black;
@@ -17,6 +18,11 @@ body{
   text-align: center;
   border-radius: 50px;
   padding: 40px;
+  box-shadow: 10px 20px 20px 10px rgb(32, 88, 141);
+}
+.box:hover{
+    box-shadow: 10px 20px 20px 10px rgb(28, 229, 236);
+  
 }
 .box h1{
     font-weight: 500;
@@ -56,7 +62,7 @@ color:white;
     border:2px solid #2ecc71;
     border-radius:  24px;
 outline:none;    
-transition: 0.25s;
+transition: 0.75s;
 width: 100px;
 color: white;
 cursor: pointer;
