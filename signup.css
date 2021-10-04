@@ -8,7 +8,7 @@ body{
 .box{
     width: 400px;
   position: absolute;
-  top: 55%;
+  top: 65%;
   left: 25%;
   transform: translate(-50%,-50%);
   color: white;
@@ -27,7 +27,7 @@ body{
     font-weight: 500;
     color:white;
 }
-.box input[type="text"],.box input[type="password"],.box input[type="email"],.box select{
+.box input[type="text"],.box input[type="password"],.box input[type="email"],.box input[type="date"]{
     border:0;
     border-radius: 100px;
     padding: 10px;
@@ -74,4 +74,7 @@ a{
     text-decoration: none;
     color: teal;
     cursor: pointer;
+}
+a:hover{
+    color: rgb(0, 255, 234);
 }
