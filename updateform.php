@@ -43,23 +43,44 @@
                     <h3 style="text-align: center; margin-bottom: 20px;"><strong>Update Your Account</strong></h3>
                 </div>
                 <div class="l-part">
+
+                    <form action="update_user.php" method="POST" enctype="multipart/form-data" >
+
                     <form action="insert_user.php" method="POST" enctype="multipart/form-data" >
+
                         <div class="input-group ">
                             <!-- <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </span> -->
+
+                            <input type="text" name="name" class="form-control" placeholder="Name" required="required">
+
                             <input type="text" name="f_name" class="form-control" placeholder="Name" required="required">
+
                         </div><br>
                         <div class="input-group">
                             <!-- <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </span> -->
+
+                            <input type="text" name="rollno" class="form-control" placeholder="Rollno" required="required">
+
                             <input type="text" name="Rollno" class="form-control" placeholder="Rollno" required="required">
+
                         </div><br>
                         <div class="input-group">
                             <!-- <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-pencil"></i>
                             </span> -->
+
+                            <input type="text" name="user_name" class="form-control" placeholder="Username" required="required">
+                        </div><br>
+                        <div class="input-group">
+                        
+                        
+                            <input type="text" class="form-control" name="city" placeholder="City" >
+                        
+
                             <input type="text" name="user_name" class="form-control" placeholder="username" required="required">
                         </div><br>
                         <div class="row">
@@ -69,10 +90,14 @@
                         <div class="col">
                             <input type="text" class="form-control" name="u_city" placeholder="City" >
                         </div>
+
                         </div><br>
                         <div class="row">
                         <div class="col">
                             <label for="user_cover">Cover image</label>
+
+                            <input type="file" id="user_cover" class="form-control" name="user_cover">
+
                             <input type="file" id="user_cover" class="form-control" name="user_cover" >
                         </div>
                         <div class="col">
@@ -84,12 +109,25 @@
                             <!-- <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-lock"></i>
                             </span> -->
+
+                            <input type="password" name="pass" class="form-control" placeholder="Password" required="required">
+
                             <input type="password" name="u_pass" class="form-control" placeholder="password" required="required">
+
                         </div><br>
                         <div class="input-group">
                             <!-- <span class="input-group-addon">
                                 <i class="glyphicon glyphicon-user"></i>
                             </span> -->
+
+                            <input type="email" name="email" class="form-control" placeholder="Email: abc@gmail.com" required="required">
+                        </div><br>
+                        <!-- <div class="input-group">
+                             <span class="input-group-addon">
+                                <i class="glyphicon glyphicon-chevron-down"></i>
+                            </span> -->
+                            <!-- <select class="form-control input-md" name="gender" id="gender" placeholder="Gender" required="required">
+
                             <input type="email" name="u_email" class="form-control" placeholder="Email: abc@gmail.com" required="required">
                         </div><br>
                         <div class="input-group">
@@ -97,17 +135,27 @@
                                 <i class="glyphicon glyphicon-chevron-down"></i>
                             </span> -->
                             <select class="form-control input-md" name="u_gender" id="gender" placeholder="Gender" required="required">
+
                                 <option selected disabled>Select your Gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Others">Others</option>
                             </select>
+
+                        </div><br> -->
+                        <div class="input-group">
+                            <input type="date" class="form-control input-md" placeholder="Date of Birth" name="dob" required="required">
+                        </div><br>
+                      
+                   <center><button type="submit" class="btn btn-outline-success login"><p style="font-size: 25px; margin-top: 70px;">&ensp; UPDATE &ensp;</p></button></center>
+
                         </div><br>
                         <div class="input-group">
                             <input type="date" class="form-control input-md" placeholder="Date of Birth" name="u_birthday" required="required">
                         </div><br>
                       
                    <center><a style="text-decoration: none; float: left; margin-left: 23px;" href="profile.php"><button type="button" class="btn btn-outline-success login"><p style="font-size: 25px; margin-left: 253px; margin-top: 15px;">&ensp; UPDATE &ensp;</p></button></a></center>
+
                    <!-- <a style="text-decoration: none; float: right;  margin-right: 23px;" href="main.php"><button type="submit" class="btn btn-outline-warning signin" name="sign_up">Sign In</button></a> -->
                    <!-- <input style="text-decoration: none; float: right;  margin-right: 23px;" type="submit" name="submit" value="sign_in" class="btn btn-outline-warning signin" > -->
                    
