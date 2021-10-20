@@ -10,17 +10,20 @@ if(!isset($_SESSION['username']))
 
   $username=$_SESSION['username'];
   $link=mysqli_connect('localhost','root','','social',3306);
-  $query="SELECT * FROM USER WHERE USERNAME='$username' OR ROLL_NO='$username'";
-  $result=mysqli_query($link,$query);
-  $row = mysqli_fetch_assoc($result);
+  $query1="SELECT * FROM USER WHERE USERNAME='$username' OR ROLL_NO='$username'";
+  $result1=mysqli_query($link,$query1);
+  $row1 = mysqli_fetch_assoc($result1);
 
-  $name=$row['FNAME'];
-  $roll_no=$row['ROLL_NO'];
-  $email=$row['EMAIL'];
-  $dob=$row['DOB'];
-  $city=$row['CITY'];
-  $prof_pic=$row['PROF_PIC']; 
-  $cover_pic=$row['COVER_PIC'];
+  $name=$_SESSION['name'];
+  $roll_no=$_SESSION['roll_no'];
+  $email=$row1['EMAIL'];
+  $dob=$row1['DOB'];
+  $city=$row1['CITY'];
+  $prof_pic=$row1['PROF_PIC']; 
+  $cover_pic=$row1['COVER_PIC'];
+
+  $query2="SELECT * FROM POST WHERE ROLL_NO='$roll_no';";
+  $result2=mysqli_query($link,$query2);
 
 ?>
 
@@ -112,28 +115,39 @@ if(!isset($_SESSION['username']))
      </div>
      </div>
      
-
-     <div class="posts">
-      <div class="posthdr">
-          <header class="p-3 mb-3 border-bottom">
-              <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                  <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-                  </a>
-                  <img src="users/bunny-2.jpg" style="clip-path: circle(); height: 103px; margin-left: -45px;" alt="img">
-                 <div style="margin-left: 43px;"> <h4><?php echo $username; ?></h4>
-                  <p>post time details</p></div>
+    <?php
+      while ($row2 = mysqli_fetch_assoc($result2))
+      {
+        $path=$row2['PICTURE'];
+        $date=$row2['DATE_POSTED'];
+        $content=$row2['CONTENT'];
+        echo "<div class='posts'>";
+      echo "<div class='posthdr'>";
+          echo "<header class='p-3 mb-3 border-bottom'>";
+              echo "<div class='container'>";
+                echo "<div class='d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start'>";
+                  echo "<a href='/' class='d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none'>";
+                    echo "<svg class='bi me-2' width='40' height='32' role='img' aria-label='Bootstrap'><use xlink:href='#bootstrap'></use></svg>";
+                  echo "</a>";
+                  echo "<img src='$prof_pic' style='clip-path: circle(); height: 103px; margin-left: -45px;' alt='img'>";
+                 echo "<div style='margin-left: 43px;'> <h4>$name</h4>";
+                  echo "<p>$date</p></div>";
                   
-                  <a class="btn btn-primary" href="cmntform.php" style=" position: absolute; right:315px; "  role="button">Comment</a>
-                </div>
-              </div>
-            </header>
-            <div>
-                <img src="users/cover-1.jpeg" alt="post" height="355px"  width="850px">
-            </div>
-    </div>
-      </div>
+                  echo "<a class='btn btn-primary' href='cmntform.php' style=' position: absolute; right:315px; '  role='button'>Comment</a>";
+                echo "</div>";
+              echo "</div>";
+            echo "</header>";
+            echo "<div>";
+               echo "<img src='$path' alt='post' height='355px'  width='850px'>";
+            echo "</div>";
+    echo "</div>";
+      echo "</div>";
+      echo "<div class='your_post' style='border: 3px solid black;width: 996px;height: 200px; text-align:left; padding:7px; font-weight:bold; margin-bottom:10px;'>";
+            echo $content;
+    echo "</div>";
+      }
+     
+      ?>
      </div></center>
       
 
