@@ -1,8 +1,13 @@
 <?php
 
 session_start();
-if(isset($_SESSION['IS_AUTHENTICATED'])&&$_SESSION['IS_AUTHENTICATED'] == 1){ 
-    require('navabar.php'); } 
+if(!isset($_SESSION['username']))
+  { 
+    header("Location:login.html");
+    exit();
+  }
+
+  require('navabar.php');
 ?>
 
 <!doctype html>
@@ -54,11 +59,11 @@ if(isset($_SESSION['IS_AUTHENTICATED'])&&$_SESSION['IS_AUTHENTICATED'] == 1){
           <strong class="d-inline-block mb-2 text-success" style="margin: 10px">On your mind</strong>
           <h4 class="mb-0" >POST it here</h4>
           <p class="mb-auto"></p>
-          <a class="btn btn-primary" href="postform.php" style="width:13px  margin-left: 594px; margin-top:0px;"  role="button">Make A Post</a>
+          <a class="btn btn-primary" href="postform.php" style="width:13px ; margin-left: 594px; margin-top:0px;"  role="button">Make A Post</a>
         </div>
         <div class="col-auto d-none d-lg-block">
           <!-- <svg class="bd-placeholder-img" width="500" height="250" src="images/postspic.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-         <div style="background-color: rgba(0, 0, 0, 0.712);"> <img src="images/undraw_moments_0y20.svg" alt="post!" width="500" height="250"></div>
+          <div style="background-color: rgba(0, 0, 0, 0.712);"> <img src="images/undraw_moments_0y20.svg" alt="post!" width="500" height="250"></div>
         </div>
       </div>
 
