@@ -1,27 +1,30 @@
 <?php
 session_start();
-include('connection.php');
-if(isset($_SESSION['IS_AUTHENTICATED'])&&$_SESSION['IS_AUTHENTICATED'] == 1){ 
-    require('navabar.php'); }
-    $user_eml=$_SESSION['user_email'];
-    // $user_eml="vinnu@gmail.com";
-    $get_user="SELECT * from `users` where user_email='$user_eml'";
-    $run_user=mysqli_query($conn,$get_user);
-   
-    while($row=mysqli_fetch_array($run_user)){
-    $user_id=$row['user_id'];
-    $user_name=$row['Name'];
-    $user_username=$row['user_name'];
-    $user_image=$row['user_image'];
-    $user_cover=$row['user_cover']; 
-    $user_num=$row['Rollno'];
-    // $user_desc=$row['describe_user'];
-    // $user_gender=$row['user_gender'];
-    $user_bdy=$row['user_birthday'];
-    $user_state=$row['user_state'];
-    $user_city=$row['user_city'];
-    $user_email=$row['user_email'];
+if(!isset($_SESSION['username']))
+  { 
+    header("Location:login.html");
+    exit();
   }
+
+  require('navabar.php');
+
+  $username=$_SESSION['username'];
+  $link=mysqli_connect('localhost','root','','social',3306);
+  $query1="SELECT * FROM USER WHERE USERNAME='$username' OR ROLL_NO='$username'";
+  $result1=mysqli_query($link,$query1);
+  $row1 = mysqli_fetch_assoc($result1);
+
+  $name=$_SESSION['name'];
+  $roll_no=$_SESSION['roll_no'];
+  $email=$row1['EMAIL'];
+  $dob=$row1['DOB'];
+  $city=$row1['CITY'];
+  $prof_pic=$row1['PROF_PIC']; 
+  $cover_pic=$row1['COVER_PIC'];
+
+  $query2="SELECT * FROM POST WHERE ROLL_NO='$roll_no';";
+  $result2=mysqli_query($link,$query2);
+
 ?>
 
 
@@ -32,67 +35,20 @@ if(isset($_SESSION['IS_AUTHENTICATED'])&&$_SESSION['IS_AUTHENTICATED'] == 1){
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <style>
-      *{
-        /* background-color: rgb(27, 5, 5); */
-
-      }
-      .about{
-            position: relative;
-            right: 255px;
-            margin: 15px;
-            width: 650px;
-            /* height: 500px; */
-            border: solid maroon;
-            background-color: rgb(230, 207, 179);
-            border-radius: 28px;
-            padding: 36px;
-      }
-      
-      .cover{
-        margin: 1px;
-        border: black solid;
-        height: 404px;  
-        width: 1055px;
-      }
-      .profiletotal{
-        border: black solid;
-        /* height: 4004px;   */
-        margin: 15px;
-        width: 1061px;
-        }
-        .coverdown{
-          margin: 25px;
-          margin-top: -275px;
-          height: 245px;
-          width: 1061px;
-        }
-      .prfl{
-          float: left;
-          width: 250px;
-          height: 250px;
-          clip-path: circle();
-        }
-        .posts{
-          margin: 15px;
-          margin-top: 25px;
-            border: black solid;
-            height: 550px;
-            width: 995px;
-        }
-    </style>
-    <title><?php echo "$user_name"; ?></title>
+    
+    <link rel="stylesheet" href="profile.css">
+    <title><?php $username; ?></title>
   </head>
   <body>
    
 
   <center> <div class="profiletotal"> 
       <div class="cover">
-      <img style="height: 400px;" src="users/<?php echo $user_cover; ?>" class="d-block w-100" alt="img!">
+      <img style="height: 400px;" src="<?php echo $cover_pic; ?>" class="d-block w-100" alt="img!">
       </div>
      
      <div class="coverdown">
-              <img class="prfl" src="users/<?php echo $user_image; ?>">
+              <img class="prfl" src="<?php echo $prof_pic; ?>">
           
             <a class="btn btn-primary" href="updateform.php" style="  margin-left: 594px; margin-top: 220px;"  role="button">Update Profile</a>
      </div>
@@ -100,92 +56,126 @@ if(isset($_SESSION['IS_AUTHENTICATED'])&&$_SESSION['IS_AUTHENTICATED'] == 1){
       <div class="abtbox">
      <div class="col-sm-2 aboutbox" >
       <br>
-       <?php
-        echo "<div class='about'><center><strong><h2 style='font-family: Georgia' >About</h2></strong></h2></center><br>
-        <center><h3 style='font-family: Georgia;'>$user_name </h3></center>
-        <p><center><b style='font-family: Segoe UI;' >$user_num</b></center></p>
-      <center> <p style='font-family:  Segoe UI;'>$user_email</p></center>
-        <center> <p style='font-family:  Segoe UI;'>$user_username</p></center>
-        <center> <p style='font-family:  Segoe UI;'>$user_state</p></center>
-        <center><p style='font-family:  Segoe UI;'>$user_city</p></center>
-        <center><p style='font-family:  Segoe UI;'></p></center>
+      
 
-        <center></center></div> "
-       ?>
+
+      <div class="contab">
+
+        <div class="col-md-8">
+            <?php
+            echo '
+                  <div class="card mb-3" style=" margin-top: 56px; width: 850px; margin-left: -65px;">
+                      <div class="card-body">
+                    <center> <h3 style=" margin-bottom: 30px; margin-right: 93px; font-size: 35px; ">About</h3> </center>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">'.$name.'
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                    '.$email.'
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Rollno</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      '.$roll_no.'
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Date-Of-Birth</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      '.$dob.'
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">City</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                     '.$city.'
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Hobbies</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      aa;ekjalkrj;
+                    </div>
+                  </div>
+                
+                </div>'
+                ?>
+     </div>
+    
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
      </div>
      </div>
      
-
-     <div class="posts">
-      <div class="posthdr">
-          <header class="p-3 mb-3 border-bottom">
-              <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                  <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-                  </a>
-                  <img src="users/bunny-2.jpg" style="clip-path: circle(); height: 103px; margin-left: -45px;" alt="img">
-                 <div style="margin-left: 43px;"> <h4>PROFILE USER NAME </h4>
-                  <p>post time details</p></div>
+    <?php
+      while ($row2 = mysqli_fetch_assoc($result2))
+      {
+        $path=$row2['PICTURE'];
+        $date=$row2['DATE_POSTED'];
+        $content=$row2['CONTENT'];
+        echo "<div class='posts'>";
+      echo "<div class='posthdr'>";
+          echo "<header class='p-3 mb-3 border-bottom'>";
+              echo "<div class='container'>";
+                echo "<div class='d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start'>";
+                  echo "<a href='/' class='d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none'>";
+                    echo "<svg class='bi me-2' width='40' height='32' role='img' aria-label='Bootstrap'><use xlink:href='#bootstrap'></use></svg>";
+                  echo "</a>";
+                  echo "<img src='$prof_pic' style='clip-path: circle(); height: 103px; margin-left: -45px;' alt='img'>";
+                 echo "<div style='margin-left: 43px;'> <h4>$name</h4>";
+                  echo "<p>$date</p></div>";
                   
-                  <a class="btn btn-primary" href="cmntform.php" style=" position: absolute; right:315px; "  role="button">Comment</a>
-                </div>
-              </div>
-            </header>
-            <div>
-                <img src="users/cover-1.jpeg" alt="post" height="355px"  width="850px">
-            </div>
-    </div>
-      </div>
-
-
-      <div class="posts">
-        <div class="posthdr">
-            <header class="p-3 mb-3 border-bottom">
-                <div class="container">
-                  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                      <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-                    </a>
-                    <img src="users/bunny-2.jpg" style="clip-path: circle(); height: 103px; margin-left: -45px;" alt="img">
-                   <div style="margin-left: 43px;"> <h4>PROFILE USER NAME </h4>
-                    <p>post time details</p></div>
-                    
-                    <a class="btn btn-primary" href="cmntform.php" style=" position: absolute; right:315px; "  role="button">Comment</a>
-                  </div>
-                </div>
-              </header>
-              <div>
-                  <img src="users/cover-1.jpeg" alt="post" height="355px"  width="850px">
-              </div>
-      </div>
-        </div>
-
-
-        <div class="posts">
-          <div class="posthdr">
-              <header class="p-3 mb-3 border-bottom">
-                  <div class="container">
-                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
-                      </a>
-                      <img src="users/bunny-2.jpg" style="clip-path: circle(); height: 103px; margin-left: -45px;" alt="img">
-                     <div style="margin-left: 43px;"> <h4>PROFILE USER NAME </h4>
-                      <p>post time details</p></div>
-                      
-                      <a class="btn btn-primary" href="cmntform.php" style=" position: absolute; right:315px; "  role="button">Comment</a>
-                    </div>
-                  </div>
-                </header>
-                <div>
-                    <img src="users/cover-1.jpeg" alt="post" height="355px"  width="850px">
-                </div>
-        </div>
-          </div>
-
-
-
+                  echo "<a class='btn btn-primary' href='cmntform.php' style=' position: absolute; right:315px; '  role='button'>Comment</a>";
+                echo "</div>";
+              echo "</div>";
+            echo "</header>";
+            echo "<div>";
+               echo "<img src='$path' alt='post' height='355px'  width='850px'>";
+            echo "</div>";
+    echo "</div>";
+      echo "</div>";
+      echo "<div class='your_post' style='border: 3px solid black;width: 996px;height: 200px; text-align:left; padding:7px; font-weight:bold; margin-bottom:10px;'>";
+            echo $content;
+    echo "</div>";
+      }
+     
+      ?>
      </div></center>
       
 
@@ -210,92 +200,5 @@ if(isset($_SESSION['IS_AUTHENTICATED'])&&$_SESSION['IS_AUTHENTICATED'] == 1){
     -->
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

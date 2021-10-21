@@ -26,7 +26,7 @@
       }
       .tablewhole {
     width: 836px;
-    height: 630px;
+    /* height: 630px; */
     border: darkorange solid 5px;
     margin-left: 329px;
     margin-top: 68px;
@@ -107,7 +107,7 @@
                             <input type="date" class="form-control input-md" placeholder="Date of Birth" name="u_birthday" required="required">
                         </div><br>
                       
-                   <center><a style="text-decoration: none; float: left; margin-left: 23px;" href="profile.php"><button type="button" class="btn btn-outline-success login"><p style="font-size: 25px; margin-left: 253px; margin-top: 15px;">&ensp; UPDATE &ensp;</p></button></a></center>
+                   <center><a style="text-decoration: none; float: left; margin-left: 23px; margin-top:10px;" href="profile.php"><button type="button" class="btn btn-outline-success login" style="margin-left: 253px; "><p style="font-size: 25px; margin-bottom: 0px;">&ensp; UPDATE &ensp;</p></button></a></center>
                    <!-- <a style="text-decoration: none; float: right;  margin-right: 23px;" href="main.php"><button type="submit" class="btn btn-outline-warning signin" name="sign_up">Sign In</button></a> -->
                    <!-- <input style="text-decoration: none; float: right;  margin-right: 23px;" type="submit" name="submit" value="sign_in" class="btn btn-outline-warning signin" > -->
                    

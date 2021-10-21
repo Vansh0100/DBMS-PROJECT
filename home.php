@@ -1,8 +1,13 @@
 <?php
 
 session_start();
-if(isset($_SESSION['IS_AUTHENTICATED'])&&$_SESSION['IS_AUTHENTICATED'] == 1){ 
-    require('navabar.php'); } 
+if(!isset($_SESSION['username']))
+  { 
+    header("Location:login.html");
+    exit();
+  }
+
+  require('navabar.php');
 ?>
 
 <!doctype html>
@@ -15,7 +20,7 @@ if(isset($_SESSION['IS_AUTHENTICATED'])&&$_SESSION['IS_AUTHENTICATED'] == 1){
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title></title>
   </head>
   <body>
   <!doctype html>
@@ -51,14 +56,14 @@ if(isset($_SESSION['IS_AUTHENTICATED'])&&$_SESSION['IS_AUTHENTICATED'] == 1){
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative" style="margin-top: 10px">
         <div class="col p-4 d-flex flex-column position-static">
         <h4 class="mb-0">Got Something</h4>
-          <strong class="d-inline-block mb-2 text-success" style="margin: 10px">On your mind</strong>
-          <h4 class="mb-0" >POST it here</h4>
+          <strong class="d-inline-block mb-2 text-success" style="margin-top: 18px; font-size: 20px; ">On your mind</strong>
+          <h4 class="mb-0" style="margin-top: 12px;" >POST it here</h4>
           <p class="mb-auto"></p>
-          <a class="btn btn-primary" href="postform.php" style="width:13px  margin-left: 594px; margin-top:0px;"  role="button">Make A Post</a>
+          <a class="btn btn-primary" href="postform.php" style="width:535px ; margin-left: 12px; margin-top:0px;"  role="button">Make A Post</a>
         </div>
         <div class="col-auto d-none d-lg-block">
           <!-- <svg class="bd-placeholder-img" width="500" height="250" src="images/postspic.png" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-         <div style="background-color: rgba(0, 0, 0, 0.712);"> <img src="images/undraw_moments_0y20.svg" alt="post!" width="500" height="250"></div>
+          <div style="background-color: rgba(0, 0, 0, 0.712);"> <img src="images/undraw_moments_0y20.svg" alt="post!" width="450" height="250"></div>
         </div>
       </div>
 
