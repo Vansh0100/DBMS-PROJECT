@@ -16,9 +16,10 @@ $email=$_POST['email'];
 $password=$_POST['password'];
 $dob=$_POST['date'];
 $city=$_POST['city'];
+$name=$_POST['fname'];
 
 $link=$link=mysqli_connect('localhost','root','','social',3306);
-$query="INSERT INTO USER VALUES('$roll','$username','$email','$dob','$city','','$password','')";
+$query="INSERT INTO USER VALUES('$roll','$username','$email','$dob','$city','','$password','','$name');";
 $result=mysqli_query($link,$query);
 
 if(!$result)

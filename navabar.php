@@ -20,10 +20,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="home.php">Home</a>
+          <a class="nav-link" aria-current="page" href="home.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="home.php">Find Friends</a>
+          <a class="nav-link" href="findfrnds.php">Find Friends</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="friends.php">Friends</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="profile.php">My profile</a>
@@ -33,10 +36,6 @@
         </li>
         
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-primary text-light btn-border border-primary btn-hover-none" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>

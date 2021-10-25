@@ -1,5 +1,21 @@
 <?php
+
+session_start();
+if(!isset($_SESSION['username']))
+{ 
+  header("Location:login.html");
+  exit();
+}
+
 require('navabar.php');
+
+$username=$_SESSION['username'];
+$link=mysqli_connect('localhost','root','','social',3306);
+$query="SELECT PROF_PIC FROM USER WHERE USERNAME='$username';";
+$result=mysqli_query($link,$query);
+$row = mysqli_fetch_assoc($result);
+$prof_pic=$row['PROF_PIC'];
+
 ?>
 
 <!doctype html>
@@ -32,7 +48,7 @@ require('navabar.php');
   <body>
 
      <center><div class="profiletotal">
-     <form action="" method="POST">
+     <form action="addpost.php" method="POST" enctype="multipart/form-data">
      <div class="posts">
         <div class="posthdr">
             <header class="p-3 mb-3 border-bottom">
@@ -41,17 +57,17 @@ require('navabar.php');
                     <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
                       <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
                     </a>
-                    <img src="users/bunny-2.jpg" style="clip-path: circle(); height: 103px; margin-left: -45px;" alt="img">
-                   <div style="margin-left: 43px;"> <h4>USER NAME </h4>
+                    <img src="<?php echo $prof_pic ?>" style="clip-path: circle(); height: 103px; margin-left: -45px;" alt="img">
+                   <div style="margin-left: 43px;"> <h4><?php echo $_SESSION['name']; ?> </h4>
                     </div>
-                    <button type="button"  style=" position: absolute; right:315px; " class="btn btn-primary">Post</button>
+                    <button type="submit"  style=" position: absolute; right:315px; " class="btn btn-primary">Post</button>
                     <!-- <a class="btn btn-primary" href="cmntform.php" style=" position: absolute; right:315px; "  role="button">POST</a> -->
                   </div>
                 </div>
               </header>
               <div>
-                  <img src="images/postdefault.png" alt="post" height="355px"  width="850px">
-                  <input style="position: absolute; top: 402px; left: 660px;" type="file" for="postng">
+                  <!-- <img src="" alt="post" height="355px"  width="850px"> -->
+                  <input style="position: absolute; top: 402px; left: 660px;" name="post" id="post" type="file" for="postng">
                   
               </div>
       </div>
@@ -60,7 +76,7 @@ require('navabar.php');
      
      <div class="form-group">
    
-      <textarea class="form-control" style="width: 928px; margin: 15px;" id="exampleFormControlTextarea1" placeholder="Mention your thoughts here!" rows="5"></textarea>
+      <input type="text" class="form-control" style="width: 928px; margin: 15px; height: 100px;" name="content" id="content" placeholder="Mention your thoughts here! (Max 100 Words)" rows="5">
    
     </div>
    </form>

@@ -35,6 +35,7 @@ if(!isset($_SESSION['username']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="profilestyle.css">
     <style>
       .about{
             position: relative;
@@ -80,7 +81,7 @@ if(!isset($_SESSION['username']))
             width: 995px;
         }
     </style>
-    <title><?php $username; ?></title>
+    <title><?php echo $username; ?></title>
   </head>
   <body>
    
@@ -92,32 +93,78 @@ if(!isset($_SESSION['username']))
      
      <div class="coverdown">
               <img class="prfl" src="<?php echo $prof_pic; ?>">
-          
+            
             <a class="btn btn-primary" href="updateform.php" style="  margin-left: 594px; margin-top: 220px;"  role="button">Update Profile</a>
      </div>
      
       <div class="abtbox">
-     <div class="col-sm-2 aboutbox" >
+     <div class="col-sm-2 aboutbox" style="margin-left:-550px;" >
       <br>
-       <?php
+      <div class="contab">
 
-        echo "<div class='about'><center><strong><h2 style='font-family: Georgia' >About</h2></strong></h2></center><br>";
-        echo "<center><h3 style='font-family: Georgia;'> ".$name."</h3></center>";
-        echo "<p><center><b style='font-family: Segoe UI;' >".$email."</b></center></p>";
-        echo "<center> <p style='font-family:  Segoe UI;'>".$roll_no."</p></center>";
-        echo "<center> <p style='font-family:  Segoe UI;'>".$dob."</p></center>";
-        echo "<center> <p style='font-family:  Segoe UI;'>".$city."</p></center>";
-        // echo "<center><p style='font-family:  Segoe UI;'>".$user_city."</p></center>";
-        echo "<center><p style='font-family:  Segoe UI;'></p></center>";
-        echo "<center></center></div>";
+<div class="col-md-8">
+    <?php
+    echo '
+          <div class="card mb-3" style=" margin-top: 56px; width: 850px; margin-left: -65px;">
+              <div class="card-body">
+            <center> <h3 style=" margin-bottom: 30px; margin-right: 93px; font-size: 35px; ">About</h3> </center>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Name</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">'.$name.'
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Email</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+            '.$email.'
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Rollno</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              '.$roll_no.'
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">Date-Of-Birth</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+              '.$dob.'
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <h6 class="mb-0">City</h6>
+            </div>
+            <div class="col-sm-9 text-secondary">
+             '.$city.'
+            </div>
+          </div>
+          <hr>
+        </div>'
+        ?>
+</div>
 
-       ?>
+
+</div>
      </div>
      </div>
      
     <?php
       while ($row2 = mysqli_fetch_assoc($result2))
       {
+        $id=$row2['POST_ID'];
         $path=$row2['PICTURE'];
         $date=$row2['DATE_POSTED'];
         $content=$row2['CONTENT'];
@@ -132,8 +179,13 @@ if(!isset($_SESSION['username']))
                   echo "<img src='$prof_pic' style='clip-path: circle(); height: 103px; margin-left: -45px;' alt='img'>";
                  echo "<div style='margin-left: 43px;'> <h4>$name</h4>";
                   echo "<p>$date</p></div>";
-                  
-                  echo "<a class='btn btn-primary' href='cmntform.php' style=' position: absolute; right:315px; '  role='button'>Comment</a>";
+                  echo "<form action='cmntform.php' method=POST>";
+                  echo "<input type='hidden' name='name' value='$name'>";
+                  echo "<input type='hidden' name='post_id' value='$id'>";
+                  echo "<input type='hidden' name='prof_pic' value='$prof_pic'";
+                  echo "<input type='hidden' name='post_path' value='$path'>";
+                  echo "<input type='submit' value='Comment' class='btn btn-primary' style=' position: absolute; right:315px;'>";
+                  echo "</form>";
                 echo "</div>";
               echo "</div>";
             echo "</header>";
@@ -142,7 +194,7 @@ if(!isset($_SESSION['username']))
             echo "</div>";
     echo "</div>";
       echo "</div>";
-      echo "<div class='your_post' style='border: 3px solid black;width: 996px;height: 200px; text-align:left; padding:7px; font-weight:bold; margin-bottom:10px;'>";
+      echo "<div class='your_post' style='border: 3px solid black;width: 996px;height: 90px; text-align:left; padding:7px; font-weight:bold; margin-bottom:10px;'>";
             echo $content;
     echo "</div>";
       }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <head>
+    <style>
+        input[type='search']{
+            border-radius: 20px;
+            border: 2px solid black;
+            width: 400px;
+            height: 50px;
+            font-size: 25px;
+            padding: 10px;
+            margin: 10px;
+        }
+        input[type='submit']{
+            border-radius: 20px;
+            outline: none;
+            border: none;
+            width: 200px;
+            height: 50px;
+            font-size: 25px;
+            padding: 10px;
+            margin: 10px;
+            background-color: rgba(16, 170, 42, 0.911);
+        }
+        input[type='submit']:hover,button:hover{
+            cursor:pointer;
+        }
+        .friend{
+            display: flex;
+        justify-content: space-around;
+            font-style: italic;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <div class="main">
+            <form action="">
+                <input type="search" name="friend" id="friend" placeholder="Find your friends....">
+            <input type="submit" value="FIND FRIENDS">
+            </form>
+            <div class="friend" style="border: 2px solid black;width: 500px;height: 170px;margin-top: 50px;padding: 10px;">
+            <div class="image" style="width: 150px;text-align: center;height:160px ;vertical-align: middle;line-height: 160px;"></div>
+            <div class="name" style="width: 150px;text-align: center;height: 160px;vertical-align: middle;line-height: 160px;">USER NAME</div>
+            <div class="btn" style="width: 150px;text-align: center;height:160px ;vertical-align: middle;line-height: 160px;">
+                <button type="submit" style="width: 140px;font-size: 20px;border-radius: 20px;padding: 5px;margin: 2px;background-color:dodgerblue;">ADD FRIEND</button>
+                </div>
+            </div>
+        </div>
+    </center>
+</body>
+</html>
